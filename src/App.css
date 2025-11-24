@@ -426,6 +426,20 @@ body {
   cursor: pointer;
 }
 
+.form-message {
+  margin: 0.6rem 0 0;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.form-message.success {
+  color: #7bed9f; /* soft green */
+}
+
+.form-message.error {
+  color: #ff6b6b; /* soft red */
+}
+
 .name-highlight,
 .section {
   will-change: opacity, transform;

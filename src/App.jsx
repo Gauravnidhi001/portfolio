@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./App.css";
@@ -76,6 +77,8 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const sectionsRef = useRef([]);
   const nameRef = useRef(null);
+  const formRef = useRef(null);
+  const [formStatus, setFormStatus] = useState(null); // null | 'sending' | 'success' | 'error'
 
   const addSectionRef = (el) => {
     if (el && !sectionsRef.current.includes(el)) {
@@ -314,20 +317,49 @@ function App() {
                 </a>
               </div>
             </div>
-            <form className="contact-form">
+            <form
+              className="contact-form"
+              ref={formRef}
+              onSubmit={async (e) => {
+                e.preventDefault();
+                setFormStatus("sending");
+                const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+                const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+                const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+                if (!serviceId || !templateId || !publicKey) {
+                  setFormStatus("error");
+                  console.error("EmailJS environment variables are not set.");
+                  return;
+                }
+
+                try {
+                  await emailjs.sendForm(serviceId, templateId, formRef.current, publicKey);
+                  setFormStatus("success");
+                  formRef.current.reset();
+                } catch (err) {
+                  console.error("EmailJS send error:", err);
+                  setFormStatus("error");
+                }
+              }}
+            >
               <label>
                 <span>Name</span>
-                <input type="text" placeholder="Your name" />
+                <input name="user_name" type="text" placeholder="Your name" required />
               </label>
               <label>
                 <span>Email</span>
-                <input type="email" placeholder="you@example.com" />
+                <input name="user_email" type="email" placeholder="you@example.com" required />
               </label>
               <label>
                 <span>Message</span>
-                <textarea placeholder="How can we collaborate?" rows={4} />
+                <textarea name="message" placeholder="How can we collaborate?" rows={4} required />
               </label>
               <button type="submit">Send</button>
+
+              {formStatus === "sending" && <p className="form-message">Sending…</p>}
+              {formStatus === "success" && <p className="form-message success">Message sent — thank you!</p>}
+              {formStatus === "error" && <p className="form-message error">Failed to send. Please try again later.</p>}
             </form>
           </section>
         </main>
