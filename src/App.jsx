@@ -48,6 +48,7 @@ const examples = [
 
 function App() {
   const [theme, setTheme] = useState("dark");
+  const [menuOpen, setMenuOpen] = useState(false);
   const sectionsRef = useRef([]);
   const nameRef = useRef(null);
 
@@ -152,9 +153,22 @@ function App() {
       <div className="layout">
         <aside className="menu">
           <p className="menu-label">Index</p>
-          <nav>
+          <button
+            type="button"
+            className="menu-toggle"
+            onClick={() => setMenuOpen((prev) => !prev)}
+            aria-expanded={menuOpen}
+          >
+            {menuOpen ? "Close" : "Menu"}
+            <span />
+          </button>
+          <nav className={`menu-links ${menuOpen ? "open" : ""}`}>
             {navItems.map((item) => (
-              <a key={item.label} href={item.to}>
+              <a
+                key={item.label}
+                href={item.to}
+                onClick={() => setMenuOpen(false)}
+              >
                 {item.label}
               </a>
             ))}
