@@ -67,12 +67,13 @@ body {
 
 .name-highlight {
   display: inline-block;
-  background: linear-gradient(120deg, #ffffff 10%, var(--accent) 45%, #ffffff 90%);
+  background: linear-gradient(130deg, var(--text-main) 0%, var(--accent) 50%, var(--text-main) 100%);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
   animation: aurora-shift 6s ease-in-out infinite alternate;
   position: relative;
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.12);
 }
 
 .name-highlight::after {

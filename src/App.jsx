@@ -127,7 +127,7 @@ function App() {
               Gaurav Nidhi
             </span>
           </h1>
-          <p className="nav-sub">Front-end developer • HTML • CSS • JavaScript</p>
+          <p className="nav-sub">Front-end developer • React • Next.js</p>
         </div>
         <div className="nav-actions">
           <a
@@ -179,7 +179,7 @@ function App() {
             </p>
             <div className="hero-meta">
               <p>10 rules of digital storytelling</p>
-              <p>HTML • CSS • JavaScript • Always learning</p>
+              <p>React • Next.js • JavaScript • Always learning</p>
             </div>
           </section>
 
