@@ -188,11 +188,11 @@ function App() {
            
             <h1>Gaurav Nidhi — Veni. Vidi. Vici.</h1>
             <p className="lede">
-              I&apos;m a basic web developer with an obsessive love for the Frontend portion . Minimalist layouts help me ship focused stories: fewer
-              elements, more intent, stronger contrast.
+              I&apos;m a Frontend Developer, Full-Stack in Progress
+              I build clean,responsive websites and I&apos;m currently mastering backend to become a complete full-stack developer.
             </p>
             <div className="hero-meta">
-              <p>10 rules of digital storytelling</p>
+              <p>Always trying to learn something new</p>
               <p>React • Next.js • JavaScript • Always learning</p>
             </div>
           </section>
