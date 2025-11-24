@@ -185,7 +185,7 @@ function App() {
 
         <main className="content">
           <section className="section hero" id="home" ref={addSectionRef}>
-            <p className="eyebrow">Dark portfolio & minimalist tone</p>
+           
             <h1>Gaurav Nidhi — Veni. Vidi. Vici.</h1>
             <p className="lede">
               I&apos;m a basic web developer with an obsessive love for the Frontend portion . Minimalist layouts help me ship focused stories: fewer
