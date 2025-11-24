@@ -199,7 +199,7 @@ function App() {
 
           <section className="section stories" id="stories" ref={addSectionRef}>
             <div className="section-heading">
-              <p>Music & dance of whitespace</p>
+              
               <h2>Minimalism in practice.</h2>
             </div>
             <div className="story-columns">
