@@ -329,6 +329,46 @@ body {
   gap: 0.6rem;
 }
 
+/* Favoured Literature styles */
+.literature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.2rem;
+}
+
+.book-card {
+  border: 1px solid var(--border);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.01) 100%);
+}
+
+.book-card h3 {
+  margin: 0 0 0.15rem;
+}
+
+.book-author {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.book-quote {
+  margin: 0.6rem 0 0.4rem;
+  color: var(--accent);
+  font-style: italic;
+  border-left: 3px solid var(--border);
+  padding-left: 0.9rem;
+}
+
+.book-review {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
 .project-status {
   font-size: 0.7rem;
   text-transform: uppercase;

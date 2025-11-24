@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 const navItems = [
   { label: "Home", to: "#home" },
   { label: "Projects", to: "#projects" },
-  { label: "Projects", to: "#projects" },
+  { label: "Favoured Literature", to: "#favoured-literature" },
   { label: "Contact", to: "#contact" },
 ];
 
@@ -45,6 +45,30 @@ const examples = [
   "Architect studios that showcase blueprints with ample negative space.",
   "Fashion houses presenting look-books like museum placards.",
   "Music collectives with editorial spreads, monochrome photography, and slow-scroll reveals.",
+];
+
+const favouredLiterature = [
+  {
+    title: "The Little Prince",
+    author: "Antoine de Saint-Exupéry",
+    quote: "On ne voit bien qu'avec le cœur. L'essentiel est invisible pour les yeux.",
+    review:
+      "A concise, poetic meditation on childhood, imagination, and the small truths that anchor us. Its simplicity hides deep emotional clarity — a book I return to when I want perspective.",
+  },
+  {
+    title: "Thinking, Fast and Slow",
+    author: "Daniel Kahneman",
+    quote: "Nothing in life is as important as you think it is, while you are thinking about it.",
+    review:
+      "An essential read on cognition and bias. It changed how I design interactions by making me question assumptions about user rationality and attention.",
+  },
+  {
+    title: "On Minimalism",
+    author: "Joshua Fields Millburn & Ryan Nicodemus",
+    quote: "Minimalism is the intentional promotion of the things we most value and the removal of anything that distracts us from it.",
+    review:
+      "Practical and humane, this collection of essays helped shape my approach to design: remove noise, emphasize intent, and respect negative space.",
+  },
 ];
 
 function App() {
@@ -234,6 +258,26 @@ function App() {
                   <div className="project-status">{project.status}</div>
                   <h3>{project.title}</h3>
                   <p>{project.summary}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section className="section literature" id="favoured-literature" ref={addSectionRef}>
+            <div className="section-heading">
+              <p>Favoured Literature</p>
+              <h2>Books, quotes, and short reviews.</h2>
+              <p className="section-note">A small library of works that shapes my thinking and craft.</p>
+            </div>
+            <div className="literature-grid">
+              {favouredLiterature.map((book) => (
+                <article key={book.title} className="book-card">
+                  <div>
+                    <h3>{book.title}</h3>
+                    <p className="book-author">{book.author}</p>
+                  </div>
+                  <blockquote className="book-quote">“{book.quote}”</blockquote>
+                  <p className="book-review">{book.review}</p>
                 </article>
               ))}
             </div>
