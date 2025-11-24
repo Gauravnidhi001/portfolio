@@ -288,8 +288,11 @@ function App() {
 
           <section className="section contact" id="contact" ref={addSectionRef}>
             <div className="section-heading">
-              <p>Director & theater company</p>
-              <h2>Available for future scenes.</h2>
+              <p>Contact</p>
+              <h2>Let&apos;s connect and create together.</h2>
+              <p className="section-note">
+                Whether you have a project in mind, a collaboration idea, or just want to say hello, I&apos;m all ears.
+              </p>
             </div>
             <div className="contact-block">
               <div>
@@ -373,7 +376,7 @@ function App() {
       </div>
 
       <footer className="footer">
-        <p>Minimal stage © {new Date().getFullYear()}</p>
+        <p>GAURAV NIDHI © {new Date().getFullYear()}</p>
         <p>Built with React 19, GSAP, and purposeful whitespace.</p>
       </footer>
     </div>
