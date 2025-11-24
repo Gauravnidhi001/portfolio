@@ -327,6 +327,8 @@ function App() {
                 const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
                 const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
+                console.log("EmailJS Config:", { serviceId, templateId, publicKey });
+
                 if (!serviceId || !templateId || !publicKey) {
                   setFormStatus("error");
                   console.error("EmailJS environment variables are not set.");
@@ -338,18 +340,23 @@ function App() {
                   setFormStatus("success");
                   formRef.current.reset();
                 } catch (err) {
-                  console.error("EmailJS send error:", err);
+                  console.error("EmailJS send error details:", {
+                    status: err.status,
+                    text: err.text,
+                    message: err.message,
+                    fullError: err,
+                  });
                   setFormStatus("error");
                 }
               }}
             >
               <label>
                 <span>Name</span>
-                <input name="user_name" type="text" placeholder="Your name" required />
+                <input name="from_name" type="text" placeholder="Your name" required />
               </label>
               <label>
                 <span>Email</span>
-                <input name="user_email" type="email" placeholder="you@example.com" required />
+                <input name="reply_to" type="email" placeholder="you@example.com" required />
               </label>
               <label>
                 <span>Message</span>
