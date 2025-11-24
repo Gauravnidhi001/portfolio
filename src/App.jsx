@@ -188,7 +188,7 @@ function App() {
            
             <h1>Gaurav Nidhi — Veni. Vidi. Vici.</h1>
             <p className="lede">
-              I&apos;m a Frontend Developer, Full-Stack in Progress
+              I&apos;m a Frontend Developer, Full-Stack in Progress.
               I build clean,responsive websites and I&apos;m currently mastering backend to become a complete full-stack developer.
             </p>
             <div className="hero-meta">
