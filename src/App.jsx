@@ -50,7 +50,7 @@ const examples = [
 
 const favouredLiterature = [
   {
-    title: "The Trial",
+    title: "The Little Prince",
     author: "Antoine de Saint-Exupéry",
     quote: "On ne voit bien qu'avec le cœur. L'essentiel est invisible pour les yeux.",
     review:
