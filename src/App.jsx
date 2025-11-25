@@ -52,7 +52,7 @@ const favouredLiterature = [
   {
     title: "The Trial",
     author: "Franz Kafka",
-    quote: "“You are free, and that is why you are lost",
+    quote: "You are free, and that is why you are lost",
     review:
       "A man faces mysterious arrest and hopeless trial in a senseless system."
   },
