@@ -50,18 +50,18 @@ const examples = [
 
 const favouredLiterature = [
   {
-    title: "The Little Prince",
-    author: "Antoine de Saint-Exupéry",
-    quote: "On ne voit bien qu'avec le cœur. L'essentiel est invisible pour les yeux.",
+    title: "The Trial",
+    author: "Franz Kafka",
+    quote: "“You are free, and that is why you are lost",
     review:
-      "A concise, poetic meditation on childhood, imagination, and the small truths that anchor us. Its simplicity hides deep emotional clarity — a book I return to when I want perspective.",
+      "A man faces mysterious arrest and hopeless trial in a senseless system."
   },
   {
     title: "Thinking, Fast and Slow",
     author: "Daniel Kahneman",
     quote: "Nothing in life is as important as you think it is, while you are thinking about it.",
     review:
-      "An essential read on cognition and bias. It changed how I design interactions by making me question assumptions about user rationality and attention.",
+      "A lonely bitter man confesses life's misery, pain, hatred, and shame.",
   },
   {
     title: "On Minimalism",
