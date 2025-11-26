@@ -334,7 +334,7 @@ function App() {
 
                 if (!serviceId || !templateId || !publicKey) {
                   setFormStatus("error");
-                  console.error("EmailJS environment variables are not set.");
+                  console.error("EmailJS hi environment variables are not set.");
                   return;
                 }
 
