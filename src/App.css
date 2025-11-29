@@ -145,6 +145,11 @@ body {
   background: var(--paper);
   padding: 1.2rem;
   border: 1px solid var(--border);
+  transition: transform 0.3s ease;
+}
+
+.menu:hover {
+  transform: translateY(-2px);
 }
 
 .menu-label {
@@ -167,12 +172,13 @@ body {
   color: var(--text-main);
   padding: 0.35rem 0;
   border-bottom: 1px solid transparent;
-  transition: border 0.3s ease, color 0.3s ease;
+  transition: border 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
 .menu-links a:hover {
   border-color: var(--border);
   color: var(--accent);
+  transform: translateX(4px);
 }
 
 .menu-toggle {
@@ -206,6 +212,13 @@ body {
   letter-spacing: 0.15em;
   text-transform: uppercase;
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background: var(--text-main);
+  color: var(--bg);
+  transform: scale(1.02);
 }
 
 .content {
@@ -236,6 +249,18 @@ body {
   font-size: clamp(3rem, 8vw, 5rem);
   margin: 0.3rem 0 1.5rem;
   letter-spacing: -0.04em;
+  animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .eyebrow {
@@ -251,6 +276,7 @@ body {
   line-height: 1.7;
   color: var(--text-muted);
   max-width: 620px;
+  animation: fadeInUp 1.2s ease-out 0.2s backwards;
 }
 
 .hero-meta {
@@ -260,6 +286,7 @@ body {
   gap: 1.5rem;
   font-size: 0.9rem;
   color: var(--text-muted);
+  animation: fadeInUp 1.4s ease-out 0.4s backwards;
 }
 
 .section-heading {
@@ -290,6 +317,11 @@ body {
 
 .story-columns article {
   padding: 1.2rem 0;
+  transition: transform 0.3s ease;
+}
+
+.story-columns article:hover {
+  transform: translateX(8px);
 }
 
 .story-columns h3 {
@@ -306,6 +338,11 @@ body {
 .examples {
   border: 1px solid var(--border);
   padding: 1.3rem 1.5rem;
+  transition: border-color 0.3s ease;
+}
+
+.examples:hover {
+  border-color: var(--accent);
 }
 
 .examples ul {
@@ -334,6 +371,27 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent, var(--accent));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+
+.project-card:hover::before {
+  opacity: 0.03;
 }
 
 .project-status {
@@ -341,6 +399,14 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.2em;
   color: var(--text-muted);
+  position: relative;
+  z-index: 1;
+}
+
+.project-card h3,
+.project-card p {
+  position: relative;
+  z-index: 1;
 }
 
 .contact-block {
@@ -354,6 +420,12 @@ body {
 .contact-block a {
   color: var(--accent);
   text-decoration: none;
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.contact-block a:hover {
+  transform: translateX(4px);
 }
 
 .contact-form {
@@ -380,6 +452,14 @@ body {
   color: var(--text-main);
   font-size: 1rem;
   font-family: inherit;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  transform: scale(1.01);
 }
 
 .contact-form button {
@@ -391,6 +471,207 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.15em;
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.contact-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.form-message {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  padding: 0.6rem;
+  border: 1px solid var(--border);
+}
+
+.form-message.success {
+  color: #4ade80;
+  border-color: #4ade80;
+}
+
+.form-message.error {
+  color: #ef4444;
+  border-color: #ef4444;
+}
+
+/* Literature Section - Premium 3D Card Design */
+.literature {
+  padding: 2rem 0;
+}
+
+.literature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+/* Premium Book Card with 3D Hover Effect */
+.book-card {
+  position: relative;
+  padding: 2.5rem;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 1.5rem;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* Gradient Overlay on Hover */
+.book-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--accent), transparent);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  border-radius: 1.5rem;
+  z-index: 0;
+}
+
+/* Shimmer Effect */
+.book-card::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 70%
+  );
+  transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  transition: transform 0.8s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 3D Transform on Hover */
+.book-card:hover {
+  transform: translateY(-12px) rotateX(2deg) rotateY(-2deg) scale(1.02);
+  border-color: var(--accent);
+  box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.4);
+}
+
+.book-card:hover::before {
+  opacity: 0.03;
+}
+
+.book-card:hover::after {
+  transform: translateX(100%) translateY(100%) rotate(45deg);
+}
+
+/* Tilt Effect on Mouse Move */
+.book-card:hover {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(-12px) rotateX(2deg) rotateY(-2deg) scale(1.02);
+  }
+  50% {
+    transform: translateY(-16px) rotateX(2deg) rotateY(-2deg) scale(1.02);
+  }
+}
+
+/* Inner Content */
+.book-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+.book-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+  transition: all 0.3s ease;
+}
+
+.book-card:hover h3 {
+  letter-spacing: 0;
+  transform: translateX(4px);
+  color: var(--accent);
+}
+
+.book-author {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+
+/* Quote Styling */
+.book-quote {
+  position: relative;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  font-style: italic;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 3px solid var(--accent);
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.book-quote::before {
+  content: '\201C';
+  position: absolute;
+  top: -0.5rem;
+  left: 0.75rem;
+  font-size: 3rem;
+  color: var(--accent);
+  opacity: 0.2;
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+
+.book-card:hover .book-quote {
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateX(4px);
+}
+
+/* Review Text */
+.book-review {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+  margin-top: 1.25rem;
+  transition: color 0.3s ease;
+}
+
+.book-card:hover .book-review {
+  color: var(--text-main);
+}
+
+/* Light Mode Adjustments for Book Cards */
+[data-theme='light'] .book-card {
+  background: var(--paper);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme='light'] .book-card:hover {
+  box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme='light'] .book-quote {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+[data-theme='light'] .book-card:hover .book-quote {
+  background: rgba(0, 0, 0, 0.04);
 }
 
 .name-highlight,
@@ -427,6 +708,7 @@ body {
   font-size: 0.85rem;
 }
 
+/* Responsive Design */
 @media (max-width: 860px) {
   .top-nav {
     flex-direction: column;
@@ -455,4 +737,37 @@ body {
     max-height: 420px;
     opacity: 1;
   }
+}
+
+@media (max-width: 768px) {
+  .literature-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .book-card {
+    padding: 2rem;
+  }
+
+  .book-card h3 {
+    font-size: 1.35rem;
+  }
+
+  /* Simplified hover on mobile */
+  .book-card:hover {
+    transform: translateY(-8px) scale(1.01);
+  }
+}
+
+/* Accessibility */
+.book-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* Smooth transitions for theme switching */
+* {
+  transition-property: background-color, color, border-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
 }

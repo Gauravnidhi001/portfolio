@@ -78,11 +78,18 @@ function App() {
   const sectionsRef = useRef([]);
   const nameRef = useRef(null);
   const formRef = useRef(null);
-  const [formStatus, setFormStatus] = useState(null); // null | 'sending' | 'success' | 'error'
+  const bookCardsRef = useRef([]);
+  const [formStatus, setFormStatus] = useState(null);
 
   const addSectionRef = (el) => {
     if (el && !sectionsRef.current.includes(el)) {
       sectionsRef.current.push(el);
+    }
+  };
+
+  const addBookCardRef = (el) => {
+    if (el && !bookCardsRef.current.includes(el)) {
+      bookCardsRef.current.push(el);
     }
   };
 
@@ -92,6 +99,7 @@ function App() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Animate menu items
       gsap.from(".menu a", {
         y: 12,
         opacity: 0,
@@ -100,6 +108,7 @@ function App() {
         stagger: 0.05,
       });
 
+      // Animate name with enhanced effects
       if (nameRef.current) {
         gsap.fromTo(
           nameRef.current,
@@ -122,6 +131,74 @@ function App() {
           ease: "sine.inOut",
         });
       }
+
+      // Animate book cards with stagger
+      if (bookCardsRef.current.length > 0) {
+        gsap.fromTo(
+          bookCardsRef.current,
+          {
+            opacity: 0,
+            y: 50,
+            scale: 0.95,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            ease: "power3.out",
+            stagger: 0.15,
+            scrollTrigger: {
+              trigger: ".literature-grid",
+              start: "top 80%",
+              end: "bottom 20%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      }
+
+      // Animate story columns
+      gsap.from(".story-columns article", {
+        opacity: 0,
+        x: -30,
+        duration: 0.8,
+        ease: "power2.out",
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: ".story-columns",
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      });
+
+      // Animate project cards
+      gsap.from(".project-card", {
+        opacity: 0,
+        y: 30,
+        duration: 0.6,
+        ease: "power2.out",
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: ".project-grid",
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      });
+
+      // Animate contact form
+      gsap.from(".contact-form label", {
+        opacity: 0,
+        x: -20,
+        duration: 0.6,
+        ease: "power2.out",
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: ".contact-form",
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      });
     });
 
     return () => ctx.revert();
@@ -146,6 +223,56 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
+  // Add 3D tilt effect to book cards on mouse move
+  useEffect(() => {
+    const handleMouseMove = (e, card) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = ((y - centerY) / centerY) * -5;
+      const rotateY = ((x - centerX) / centerX) * 5;
+      
+      gsap.to(card, {
+        rotateX: rotateX,
+        rotateY: rotateY,
+        duration: 0.5,
+        ease: "power2.out",
+      });
+    };
+
+    const handleMouseLeave = (card) => {
+      gsap.to(card, {
+        rotateX: 0,
+        rotateY: 0,
+        duration: 0.5,
+        ease: "power2.out",
+      });
+    };
+
+    bookCardsRef.current.forEach((card) => {
+      const mouseMoveHandler = (e) => handleMouseMove(e, card);
+      const mouseLeaveHandler = () => handleMouseLeave(card);
+      
+      card.addEventListener("mousemove", mouseMoveHandler);
+      card.addEventListener("mouseleave", mouseLeaveHandler);
+      
+      card._handlers = { mouseMoveHandler, mouseLeaveHandler };
+    });
+
+    return () => {
+      bookCardsRef.current.forEach((card) => {
+        if (card._handlers) {
+          card.removeEventListener("mousemove", card._handlers.mouseMoveHandler);
+          card.removeEventListener("mouseleave", card._handlers.mouseLeaveHandler);
+        }
+      });
+    };
+  }, []);
+
   return (
     <div className="page minimal">
       <header className="top-nav">
@@ -168,7 +295,7 @@ function App() {
             <Github size={18} />
           </a>
           <a
-            href="https://www.linkedin.com/in/gaurav-nidhi-013b29381?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+            href="https://www.linkedin.com/in/gaurav-nidhi-013b29381"
             target="_blank"
             rel="noreferrer"
             aria-label="Gaurav Nidhi LinkedIn"
@@ -212,11 +339,10 @@ function App() {
 
         <main className="content">
           <section className="section hero" id="home" ref={addSectionRef}>
-           
             <h1>Gaurav Nidhi — Veni. Vidi. Vici.</h1>
             <p className="lede">
               I&apos;m a Frontend Developer, Full-Stack in Progress.
-              I build clean,responsive websites and I&apos;m currently mastering backend to become a complete full-stack developer.
+              I build clean, responsive websites and I&apos;m currently mastering backend to become a complete full-stack developer.
             </p>
             <div className="hero-meta">
               <p>Always trying to learn something new</p>
@@ -226,7 +352,6 @@ function App() {
 
           <section className="section stories" id="stories" ref={addSectionRef}>
             <div className="section-heading">
-              
               <h2>Minimalism in practice.</h2>
             </div>
             <div className="story-columns">
@@ -274,12 +399,12 @@ function App() {
             </div>
             <div className="literature-grid">
               {favouredLiterature.map((book) => (
-                <article key={book.title} className="book-card">
+                <article key={book.title} className="book-card" ref={addBookCardRef}>
                   <div>
                     <h3>{book.title}</h3>
                     <p className="book-author">{book.author}</p>
                   </div>
-                  <blockquote className="book-quote">“{book.quote}”</blockquote>
+                  <blockquote className="book-quote">{book.quote}</blockquote>
                   <p className="book-review">{book.review}</p>
                 </article>
               ))}
@@ -312,7 +437,7 @@ function App() {
               <div>
                 <p className="eyebrow">LinkedIn</p>
                 <a
-                  href="https://www.linkedin.com/in/gaurav-nidhi-013b29381?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+                  href="https://www.linkedin.com/in/gaurav-nidhi-013b29381"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -330,11 +455,9 @@ function App() {
                 const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
                 const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-                console.log("EmailJS Config:", { serviceId, templateId, publicKey });
-
                 if (!serviceId || !templateId || !publicKey) {
                   setFormStatus("error");
-                  console.error("EmailJS hi environment variables are not set.");
+                  console.error("EmailJS environment variables are not set.");
                   return;
                 }
 
@@ -343,12 +466,7 @@ function App() {
                   setFormStatus("success");
                   formRef.current.reset();
                 } catch (err) {
-                  console.error("EmailJS send error details:", {
-                    status: err.status,
-                    text: err.text,
-                    message: err.message,
-                    fullError: err,
-                  });
+                  console.error("EmailJS send error:", err);
                   setFormStatus("error");
                 }
               }}
@@ -365,7 +483,9 @@ function App() {
                 <span>Message</span>
                 <textarea name="message" placeholder="How can we collaborate?" rows={4} required />
               </label>
-              <button type="submit">Send</button>
+              <button type="submit" disabled={formStatus === "sending"}>
+                {formStatus === "sending" ? "Sending…" : "Send"}
+              </button>
 
               {formStatus === "sending" && <p className="form-message">Sending…</p>}
               {formStatus === "success" && <p className="form-message success">Message sent — thank you!</p>}
