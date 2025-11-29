@@ -1,17 +1,43 @@
-# React + Vite
+# 🌐 Personal Portfolio Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, fully responsive **portfolio website** built with **React.js**, featuring smooth animations powered by **GSAP**, and a working contact form integrated using **EmailJS**.
 
-Currently, two official plugins are available:
+This project showcases my skills, projects, and experience as a web developer.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚀 Live Demo  
+🔗 **Website:** https://gauravnidhi.netlify.app/  
+🔗 **GitHub Repo:** https://github.com/Gauravnidhi001/portfolio/
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# portfolio
+- **React.js** – Component-based UI  
+- **GSAP** – Smooth animations & transitions  
+- **EmailJS** – Functional contact form without backend  
+- **CSS / Tailwind / SCSS** (update based on your usage)  
+- **Netlify** – Deployment  
+
+---
+
+## 📂 Features
+
+- 🎨 Clean & modern UI  
+- ⚡ Smooth GSAP animations  
+- 📱 Fully responsive design  
+- 📨 Working contact form (EmailJS)  
+- 🧩 Modular & clean folder structure  
+- 🌙 Optimized performance  
+
+---
+
+## 📬 Contact Form Setup (EmailJS)
+
+1. Create an account at: https://emailjs.com  
+2. Create a **Service**, **Template**, and copy your **Public Key**  
+3. Add these to your project  
+4. Use them with:  
+```js
+emailjs.send(serviceID, templateID, templateParams, publicKey)
